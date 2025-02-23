@@ -10,5 +10,5 @@ def get_num():
 
 def meow(m):
         print ("meow " * m)
-
+        #or for _ in range (n):
 main()
