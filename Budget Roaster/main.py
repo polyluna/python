@@ -1,19 +1,34 @@
 import json
 
-with open ("balance.json", mode ="r+") as file:
-        file.write('{"balance": 100}')
-        data = json.load(file)
+#def main():
+today_budget = int(input("What's your budget today?"))
+
+# Write data def save_data(): 
+with open("balance.json", mode="w") as file:
+    json.dump({"balance": today_budget}, file)
+
+# Read data def load_data(): 
+with open("balance.json", mode="r") as file:
+    data = json.load(file)
+
+print(data)
 
 print("Balance:", data["balance"])
+
+c_budget = data["balance"]
+
+while True:
+        num = input("Enter a number, or 'done':")
+        if num =="done":
+             break
+        try:
+                num = int(num)
+                c_budget -= num
+                print("remaining budget = ",c_budget)
+        except ValueError:
+              print("Please input your spending today or 'done'.")
+
 '''
-def main():
-
-
-#Loads existing budget data.
-def load_data(): 
-
-#Saves budget data.
-def save_data(): 
 
 #Gets and validates user input for income.
 def get_income(): 
