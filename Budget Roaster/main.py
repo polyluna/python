@@ -2,18 +2,8 @@ import json
 
 def main():
         today_budget = int(input("What's your budget today?"))
-
-        # Write data def save_data(): 
-        with open("balance.json", mode="w") as file:
-                json.dump({"balance": today_budget}, file)
-
-        # Read data def load_data(): 
-        with open("balance.json", mode="r") as file:
-                data = json.load(file)
-
-        #print(data)
-        #print("Balance:", data["balance"])
-
+        save_data(today_budget)
+        data = load_data()
         c_budget = data["balance"]
 
         while True:
@@ -23,10 +13,29 @@ def main():
                 try:
                         num = int(num)
                         c_budget -= num
+                        if c_budget <= 0:
+                                print("OVER BUDGET! --> YOU ARE EATING INSTANT NOODLES TMR")
+                                break
+                        print(rxn(num))
                         print("remaining budget = ",c_budget)
-                        rxn(num)
+                        
                 except ValueError:
                         print("Please input your spending today or 'done'.")
+
+# Write data 
+def save_data(td_budget): 
+        with open("balance.json", mode="w") as file:
+                json.dump({"balance": td_budget}, file)
+
+
+# Read data 
+def load_data(): 
+        with open("balance.json", mode="r") as file:
+                return json.load(file)
+
+        #print(data)
+        #print("Balance:", data["balance"])
+
 
 def rxn(num):
         if 0 <= num <= 20:
