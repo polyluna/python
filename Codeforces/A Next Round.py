@@ -14,6 +14,16 @@ print(count)
 
 
 '''
+n, k = map(int, input().split())
+l = list(map(int, input().split()))
+
+threshold = l[k - 1]  # the score to beat or tie
+count = sum(1 for score in l if score >= threshold and score > 0)
+
+print(count)
+'''
+
+'''
 while True:
         if l[k-1] == 0:
                 while i>= 0 and l[i] == 0:
